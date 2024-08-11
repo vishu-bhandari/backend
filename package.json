@@ -2,15 +2,10 @@
   "name": "sushant-sir",
   "version": "1.0.0",
   "main": "index.js",
-  
-"scripts": {
-  "client-install": "npm install --prefix ../client",
-  "server": "nodemon server.js",
-  "client": "npm start --prefix ../client",
-  "dev": "concurrently \"npm run server\" \"npm run client\"",
-  "build": "npm install --prefix ../client && npm run build --prefix ../client",
-  "start": "npm run build && node server.js"
-},
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
