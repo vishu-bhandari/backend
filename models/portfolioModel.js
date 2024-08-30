@@ -171,6 +171,46 @@ const aboutSchema = new mongoose.Schema({
  })
 
 
+ const ContactSchema = new mongoose.Schema({
+  firstname: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  lastname: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+    match: [/.+@.+\..+/, 'Please enter a valid email address'],
+  },
+  occupation: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  message: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+}, { timestamps: true });
+
+
+
+
+
   module.exports = {
    
     About: mongoose.model("abouts",aboutSchema),
@@ -181,6 +221,7 @@ const aboutSchema = new mongoose.Schema({
     Gallery:mongoose.model("gallerys",gallerySchema),
     Faq:mongoose.model("faqs",faqSchema),
     Testimonial:mongoose.model("testimonials",testimonialSchema),
+    Contact: mongoose.model('Contacts', ContactSchema),
     
    
 };

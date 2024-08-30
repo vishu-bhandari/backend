@@ -1,7 +1,7 @@
 const router=require('express').Router();
 
 
-const { About , Project , Slider, Blog, Gallery, Faq ,Testimonial,Aboutme} = require("../models/portfolioModel");
+const { About , Project , Slider, Blog, Gallery, Faq ,Testimonial,Aboutme , Contact} = require("../models/portfolioModel");
 const { User } = require("../models/userModel");
 
 
@@ -398,7 +398,42 @@ router.post("/AdminLogin", async (req, res) => {
   }
 });
 
+// Save contact information
+router.post("/add-contact", async (req, res) => {
+  try {
+      const contact = new Contact(req.body);
+      await contact.save();
+      res.status(200).send({
+          data: contact,
+          success: true,
+          message: "Contact information saved successfully",
+      });
+  } catch (error) {
+      res.status(500).send({
+          error: error.message,
+          success: false,
+          message: "Failed to save contact information",
+      });
+  }
+});
 
+// Get all contact information
+router.get('/get-contacts', async (req, res) => {
+  try {
+    const contacts = await Contact.find();
+    res.status(200).send({
+      data: contacts,
+      success: true,
+      message: 'Contacts fetched successfully',
+    });
+  } catch (error) {
+    res.status(500).send({
+      error: error.message,
+      success: false,
+      message: 'Failed to fetch contacts',
+    });
+  }
+});
 
 
 
