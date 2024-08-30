@@ -436,6 +436,40 @@ router.get('/get-contacts', async (req, res) => {
 });
 
 
+router.post('/delete-contact', async (req, res) => {
+  try {
+    const { _id } = req.body;
+    if (!_id) {
+      return res.status(400).send({
+        success: false,
+        message: 'Contact ID is required',
+      });
+    }
+    
+    const contact = await Contact.findByIdAndDelete(_id);
+    
+    if (!contact) {
+      return res.status(404).send({
+        success: false,
+        message: 'Contact not found',
+      });
+    }
+    
+    res.status(200).send({
+      data: contact,
+      success: true,
+      message: 'Contact deleted successfully',
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: 'Failed to delete contact',
+      error: error.message,
+    });
+  }
+});
+
+
 
 
   module.exports = router;
