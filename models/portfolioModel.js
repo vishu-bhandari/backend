@@ -202,7 +202,7 @@ const aboutSchema = new mongoose.Schema({
   },
   message: {
     type: String,
-    required: true,
+    // required: true,
     trim: true,
   },
 }, { timestamps: true });
